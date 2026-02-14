@@ -1,104 +1,64 @@
+import { t, currentLang } from '../translations.js';
 import { currentRole } from '../main.js';
 
 export function renderLogin() {
-    const isCitizen = currentRole === 'citizen';
-    const homeRoute = currentRole === 'citizen' ? 'citizen-home' : currentRole === 'officer' ? 'officer-home' : 'system-overview';
+  const isCitizen = currentRole === 'citizen';
+  const roleTitle = currentRole === 'citizen' ? t('login.citizenTitle') : currentRole === 'officer' ? t('login.officerTitle') : t('login.adminTitle');
+  const homeRoute = currentRole === 'citizen' ? 'citizen-home' : currentRole === 'officer' ? 'officer-home' : 'system-overview';
 
-    if (isCitizen) {
-        return `
-      <div class="screen" style="background:white;">
-        <div class="top-bar" style="background:var(--citizen);">
-          <button class="top-bar-back" data-navigate="role-selection">←</button>
-          <span class="top-bar-title">Citizen Login</span>
-        </div>
+  return `
+    <div class="screen" style="background:var(--surface);">
+      <div class="top-bar ${currentRole}">
+        <button class="top-bar-back" data-navigate="role-selection">${t('common.back')}</button>
+        <span class="top-bar-title">${roleTitle}</span>
+      </div>
 
-        <div style="padding:32px 24px; text-align:center;">
-          <div style="width:80px; height:80px; margin:0 auto 16px; border-radius:50%; background:var(--citizen-surface); display:flex; align-items:center; justify-content:center; font-size:36px;">👤</div>
-          <h2 style="font-size:22px; font-weight:700; margin-bottom:4px;">Welcome Back!</h2>
-          <p style="font-size:14px; color:var(--text-secondary);">Login to access your schemes</p>
-        </div>
+      <div style="padding:32px 20px; text-align:center;">
+        <div style="width:80px; height:80px; border-radius:50%; background:var(--bg); margin:0 auto 20px; display:flex; align-items:center; justify-content:center; font-size:36px;">👤</div>
+        <h2 style="font-size:var(--fs-2xl); font-weight:800; margin-bottom:8px;">${t('login.welcome')}</h2>
+        <p style="color:var(--text-secondary); font-size:var(--fs-sm);">${t('login.welcomeSub')}</p>
+      </div>
 
-        <div class="content-padding content-gap" style="gap:20px;">
-          <div class="input-group">
-            <label class="input-label">Mobile Number / மொபைல் எண்</label>
+      <div style="padding:0 20px;">
+        ${isCitizen ? `
+          <div class="input-group" style="margin-bottom:20px;">
+            <label class="input-label">${t('login.mobile')}</label>
             <div style="display:flex; gap:8px;">
-              <div style="padding:14px 12px; background:var(--bg); border-radius:var(--radius-md); font-weight:600; color:var(--text-secondary); border:2px solid var(--border);">+91</div>
-              <input class="input-field" placeholder="Enter 10-digit mobile number" value="98765 43210" style="flex:1;" />
+              <input class="input-field" style="width:70px; text-align:center;" value="+91" readonly>
+              <input class="input-field" style="flex:1;" placeholder="98765 43210" type="tel">
             </div>
           </div>
+          <button class="btn btn-primary btn-block btn-lg" data-navigate="${homeRoute}">📱 ${t('login.sendOtp')}</button>
+          <div class="divider-or"><span>${t('login.or')}</span></div>
+          <button class="btn btn-outline btn-block" data-navigate="${homeRoute}">🆔 ${t('login.aadhaar')}</button>
 
-          <button class="btn btn-primary btn-block btn-lg" data-navigate="${homeRoute}">
-            📱 Send OTP
-          </button>
-
-          <div class="divider-or">OR</div>
-
-          <button class="btn btn-outline btn-block" data-navigate="${homeRoute}" style="border-color:var(--primary); color:var(--primary);">
-            🆔 Login with Aadhaar
-          </button>
-
-          <div style="background:var(--primary-surface); border-radius:var(--radius-md); padding:14px 16px; display:flex; gap:10px; align-items:center;">
+          <div style="margin-top:24px; padding:16px; background:var(--primary-surface); border-radius:var(--radius-md); display:flex; gap:12px; align-items:flex-start;">
             <span style="font-size:20px;">🔒</span>
-            <p style="font-size:12px; color:var(--primary); line-height:1.4;">Your data is secured with end-to-end encryption and follows DPDP Act 2023 guidelines.</p>
+            <p style="font-size:var(--fs-xs); color:var(--text-secondary); line-height:1.5;">${t('login.secureNote')}</p>
           </div>
-        </div>
-
-        <div style="padding:24px; text-align:center;">
-          <div class="lang-toggle">
-            <button class="lang-btn active">English</button>
-            <button class="lang-btn">தமிழ்</button>
-            <button class="lang-btn">हिंदी</button>
+        ` : `
+          <div class="input-group" style="margin-bottom:16px;">
+            <label class="input-label">${t('login.empId')}</label>
+            <input class="input-field" placeholder="TN-RI-2024-0847" type="text">
           </div>
-        </div>
-      </div>
-    `;
-    }
+          <div class="input-group" style="margin-bottom:24px;">
+            <label class="input-label">${t('login.password')}</label>
+            <input class="input-field" placeholder="••••••••" type="password">
+          </div>
+          <button class="btn ${currentRole === 'officer' ? 'btn-officer' : 'btn-admin'} btn-block btn-lg" data-navigate="${homeRoute}">🔐 ${t('login.loginBtn')}</button>
 
-    // Officer / Admin login
-    const roleLabel = currentRole === 'officer' ? 'Revenue Officer' : 'Admin';
-    const roleIcon = currentRole === 'officer' ? '🛡️' : '⚙️';
-    const barClass = currentRole === 'officer' ? 'officer' : 'admin';
-
-    return `
-    <div class="screen" style="background:white;">
-      <div class="top-bar ${barClass}">
-        <button class="top-bar-back" data-navigate="role-selection">←</button>
-        <span class="top-bar-title">${roleLabel} Login</span>
+          <div style="margin-top:24px; padding:16px; background:var(--officer-surface); border-radius:var(--radius-md); display:flex; gap:12px; align-items:flex-start;">
+            <span style="font-size:20px;">⚠️</span>
+            <p style="font-size:var(--fs-xs); color:var(--text-secondary); line-height:1.5;">${t('login.authNote')}</p>
+          </div>
+        `}
       </div>
 
-      <div style="padding:32px 24px; text-align:center;">
-        <div style="width:80px; height:80px; margin:0 auto 16px; border-radius:50%; background:${currentRole === 'officer' ? 'var(--officer-surface)' : 'var(--admin-surface)'}; display:flex; align-items:center; justify-content:center; font-size:36px;">${roleIcon}</div>
-        <h2 style="font-size:22px; font-weight:700; margin-bottom:4px;">${roleLabel} Portal</h2>
-        <p style="font-size:14px; color:var(--text-secondary);">Secure government access</p>
-      </div>
-
-      <div class="content-padding content-gap" style="gap:20px;">
-        <div class="input-group">
-          <label class="input-label">Employee ID / அரசு ஊழியர் எண்</label>
-          <input class="input-field" placeholder="Enter Employee ID" value="TN-RO-2024-0847" />
-        </div>
-
-        <div class="input-group">
-          <label class="input-label">Password / கடவுச்சொல்</label>
-          <input class="input-field" type="password" placeholder="Enter password" value="••••••••" />
-        </div>
-
-        <button class="btn ${currentRole === 'officer' ? 'btn-officer' : 'btn-admin'} btn-block btn-lg" data-navigate="${homeRoute}">
-          🔐 Login to Dashboard
-        </button>
-
-        <p style="text-align:center; font-size:13px; color:var(--primary); cursor:pointer;">Forgot Password?</p>
-
-        <div style="background:${currentRole === 'officer' ? 'var(--officer-surface)' : 'var(--admin-surface)'}; border-radius:var(--radius-md); padding:14px 16px; display:flex; gap:10px; align-items:center;">
-          <span style="font-size:20px;">🏛️</span>
-          <p style="font-size:12px; color:var(--text-secondary); line-height:1.4;">Authorized access only. All activities are monitored and logged as per IT Act 2000.</p>
-        </div>
-      </div>
-
-      <div style="padding:24px; text-align:center;">
+      <!-- Language Toggle -->
+      <div style="padding:32px 20px; text-align:center;">
         <div class="lang-toggle">
-          <button class="lang-btn active">English</button>
-          <button class="lang-btn">தமிழ்</button>
+          <button class="lang-btn ${currentLang === 'en' ? 'active' : ''}" data-lang="en">${t('common.english')}</button>
+          <button class="lang-btn ${currentLang === 'ta' ? 'active' : ''}" data-lang="ta">${t('common.tamil')}</button>
         </div>
       </div>
     </div>

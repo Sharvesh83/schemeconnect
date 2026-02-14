@@ -1,139 +1,98 @@
+import { t } from '../translations.js';
+
 export function renderApplicationTracker() {
-    return `
+  return `
     <div class="screen has-bottom-nav">
       <div class="top-bar citizen">
-        <button class="top-bar-back" data-navigate="citizen-home">←</button>
-        <span class="top-bar-title">Application Status</span>
+        <button class="top-bar-back" data-navigate="citizen-home">${t('common.back')}</button>
+        <span class="top-bar-title">${t('tracker.title')}</span>
       </div>
 
       <!-- Application Card -->
-      <div class="content-padding" style="padding-top:20px;">
-        <div class="card card-highlight" style="margin-bottom:20px;">
-          <div style="display:flex; gap:14px; align-items:center; margin-bottom:14px;">
-            <div style="width:48px; height:48px; border-radius:12px; background:var(--citizen); display:flex; align-items:center; justify-content:center; font-size:24px; color:white;">🌾</div>
-            <div style="flex:1;">
-              <h3 style="font-size:16px; font-weight:700;">PM-KISAN Samman Nidhi</h3>
-              <p style="font-size:13px; color:var(--text-secondary);">App ID: SC-2026-TK-00472</p>
-            </div>
-            <span class="badge badge-warning">⏳ In Progress</span>
+      <div style="padding:16px 20px;">
+        <div class="card card-highlight">
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span style="font-size:var(--fs-xs); color:var(--text-secondary);">${t('tracker.appId')}: <strong>TK-2026-00847</strong></span>
+            <span class="badge badge-warning">${t('citizenHome.underReview')}</span>
           </div>
-          <div style="display:flex; gap:12px;">
-            <div style="flex:1; text-align:center; padding:8px; background:white; border-radius:8px;">
-              <p style="font-size:11px; color:var(--text-hint);">Applied On</p>
-              <p style="font-size:13px; font-weight:600;">28 Jan 2026</p>
-            </div>
-            <div style="flex:1; text-align:center; padding:8px; background:white; border-radius:8px;">
-              <p style="font-size:11px; color:var(--text-hint);">Expected By</p>
-              <p style="font-size:13px; font-weight:600;">15 Mar 2026</p>
-            </div>
-            <div style="flex:1; text-align:center; padding:8px; background:white; border-radius:8px;">
-              <p style="font-size:11px; color:var(--text-hint);">Benefit</p>
-              <p style="font-size:13px; font-weight:600; color:var(--citizen);">₹6,000/yr</p>
-            </div>
-          </div>
+          <h3 style="font-size:var(--fs-lg); font-weight:700; margin-bottom:4px;">${t('recSchemes.pmKisan')}</h3>
+          <p style="font-size:var(--fs-sm); color:var(--text-secondary);">${t('tracker.benefit')}: ₹6,000/year</p>
         </div>
+      </div>
 
-        <!-- Timeline -->
-        <h3 style="font-size:16px; font-weight:700; margin-bottom:20px;">📍 Application Timeline</h3>
-
-        <div class="timeline" style="margin-bottom:24px;">
+      <!-- Timeline -->
+      <div style="padding:8px 20px 24px;">
+        <div class="timeline">
           <div class="timeline-item">
             <div class="timeline-dot completed">✓</div>
             <div class="timeline-content">
-              <h4>Application Submitted</h4>
-              <p>Your application was received and registered successfully.</p>
-              <span class="timeline-date">28 Jan 2026, 10:30 AM</span>
+              <h4>${t('tracker.submitted')}</h4>
+              <p>15 Jan 2026, 10:30 AM</p>
             </div>
           </div>
-
           <div class="timeline-item">
             <div class="timeline-dot completed">✓</div>
             <div class="timeline-content">
-              <h4>Documents Verified</h4>
-              <p>All uploaded documents have been verified by the system.</p>
-              <span class="timeline-date">30 Jan 2026, 2:15 PM</span>
+              <h4>${t('tracker.docsVerified')}</h4>
+              <p>18 Jan 2026, 2:15 PM</p>
             </div>
           </div>
-
           <div class="timeline-item">
             <div class="timeline-dot completed">✓</div>
             <div class="timeline-content">
-              <h4>VAO Verification</h4>
-              <p>Village Administrative Officer R. Karuppasamy verified your details.</p>
-              <span class="timeline-date">3 Feb 2026, 11:00 AM</span>
+              <h4>${t('tracker.vaoVerify')}</h4>
+              <p>22 Jan 2026, 11:00 AM</p>
             </div>
           </div>
-
           <div class="timeline-item">
             <div class="timeline-dot current">⏳</div>
             <div class="timeline-content">
-              <h4 style="color:var(--warning);">Revenue Inspector Review</h4>
-              <p>Your application is being reviewed by RI Thoothukudi Division.</p>
-              <span class="timeline-date">Assigned: 5 Feb 2026</span>
-              <div style="background:#fff8e1; border-radius:8px; padding:8px 12px; margin-top:8px;">
-                <p style="font-size:12px; color:#f57f17;">⏱️ Estimated: 5-7 working days</p>
-              </div>
+              <h4>${t('tracker.riReview')}</h4>
+              <p style="color:var(--warning);">In Progress...</p>
             </div>
           </div>
-
           <div class="timeline-item">
             <div class="timeline-dot pending">5</div>
             <div class="timeline-content">
-              <h4>Tahsildar Approval</h4>
-              <p style="color:var(--text-hint);">Final approval by District Tahsildar</p>
+              <h4>${t('tracker.tahsildar')}</h4>
+              <p>Pending</p>
             </div>
           </div>
-
           <div class="timeline-item">
             <div class="timeline-dot pending">6</div>
             <div class="timeline-content">
-              <h4>Benefit Disbursed</h4>
-              <p style="color:var(--text-hint);">₹2,000 first installment via DBT to your bank</p>
+              <h4>${t('tracker.disbursed')}</h4>
+              <p>Pending</p>
             </div>
-          </div>
-        </div>
-
-        <!-- Other Applications -->
-        <h3 style="font-size:16px; font-weight:700; margin-bottom:12px;">Other Applications</h3>
-
-        <div class="content-gap" style="padding-bottom:24px;">
-          <div class="card" style="display:flex; gap:14px; align-items:center;">
-            <div style="width:44px; height:44px; border-radius:12px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; font-size:20px;">🏠</div>
-            <div style="flex:1;">
-              <h4 style="font-size:14px; font-weight:600;">PMAY Housing Assistance</h4>
-              <p style="font-size:12px; color:var(--text-secondary);">15 Jan 2026</p>
-            </div>
-            <span class="badge badge-success">✅ Approved</span>
-          </div>
-
-          <div class="card" style="display:flex; gap:14px; align-items:center;">
-            <div style="width:44px; height:44px; border-radius:12px; background:#fce4ec; display:flex; align-items:center; justify-content:center; font-size:20px;">👵</div>
-            <div style="flex:1;">
-              <h4 style="font-size:14px; font-weight:600;">Old Age Pension</h4>
-              <p style="font-size:12px; color:var(--text-secondary);">5 Jan 2026</p>
-            </div>
-            <span class="badge badge-error">📎 Docs Needed</span>
           </div>
         </div>
       </div>
 
-      <!-- Bottom Nav -->
+      <!-- Other Applications -->
+      <div class="section-header">
+        <span class="section-title">${t('tracker.otherApps')}</span>
+      </div>
+      <div style="padding:0 20px 24px; display:flex; flex-direction:column; gap:10px;">
+        <div class="card" style="padding:14px;">
+          <div style="display:flex; justify-content:space-between;">
+            <div><h4 style="font-weight:600; font-size:var(--fs-sm);">${t('recSchemes.pmay')}</h4><p style="font-size:var(--fs-xs); color:var(--text-secondary);">₹2,50,000</p></div>
+            <span class="badge badge-info">${t('citizenHome.documentsVerified')}</span>
+          </div>
+        </div>
+        <div class="card" style="padding:14px;">
+          <div style="display:flex; justify-content:space-between;">
+            <div><h4 style="font-weight:600; font-size:var(--fs-sm);">${t('recSchemes.oldAge')}</h4><p style="font-size:var(--fs-xs); color:var(--text-secondary);">₹1,000/month</p></div>
+            <span class="badge badge-success">${t('citizenHome.approvedStatus')}</span>
+          </div>
+        </div>
+      </div>
+
       <nav class="bottom-nav">
-        <button class="bottom-nav-item" data-navigate="citizen-home">
-          <span class="nav-icon">🏠</span><span>Home</span>
-        </button>
-        <button class="bottom-nav-item" data-navigate="recommended-schemes">
-          <span class="nav-icon">🔍</span><span>Schemes</span>
-        </button>
-        <button class="bottom-nav-item active" data-navigate="application-tracker">
-          <span class="nav-icon">📋</span><span>Track</span>
-        </button>
-        <button class="bottom-nav-item" data-navigate="notifications">
-          <span class="nav-icon">🔔</span><span>Alerts</span>
-        </button>
-        <button class="bottom-nav-item" data-navigate="profile-setup">
-          <span class="nav-icon">👤</span><span>Profile</span>
-        </button>
+        <button class="bottom-nav-item" data-navigate="citizen-home"><span class="nav-icon">🏠</span><span>${t('common.home')}</span></button>
+        <button class="bottom-nav-item" data-navigate="recommended-schemes"><span class="nav-icon">�</span><span>${t('common.schemes')}</span></button>
+        <button class="bottom-nav-item active" data-navigate="application-tracker"><span class="nav-icon">�</span><span>${t('common.track')}</span></button>
+        <button class="bottom-nav-item" data-navigate="notifications"><span class="nav-icon">🔔</span><span>${t('common.alerts')}</span></button>
+        <button class="bottom-nav-item" data-navigate="profile-setup"><span class="nav-icon">👤</span><span>${t('common.profile')}</span></button>
       </nav>
     </div>
   `;

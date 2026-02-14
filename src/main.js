@@ -1,4 +1,5 @@
 import './style.css';
+import { setLang, currentLang } from './translations.js';
 
 // --- Screen Imports ---
 import { renderSplash } from './screens/splash.js';
@@ -22,7 +23,7 @@ import { renderSchemeManagement } from './screens/schemeManagement.js';
 import { renderSystemOverview } from './screens/systemOverview.js';
 
 // --- State ---
-export let currentRole = 'citizen'; // 'citizen', 'officer', 'admin'
+export let currentRole = 'citizen';
 
 export function setRole(role) {
   currentRole = role;
@@ -84,6 +85,17 @@ function bindEvents(screen) {
     });
   });
 
+  // Language toggle
+  container.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang');
+      if (lang) {
+        setLang(lang);
+        render(); // Re-render current screen in new language
+      }
+    });
+  });
+
   // Checkbox toggling
   container.querySelectorAll('.checkbox').forEach(el => {
     el.addEventListener('click', () => {
@@ -130,7 +142,6 @@ function bindEvents(screen) {
 // --- Init ---
 window.addEventListener('hashchange', render);
 window.addEventListener('DOMContentLoaded', () => {
-  // Auto-splash with timed redirect
   if (!window.location.hash || window.location.hash === '#splash') {
     render();
     setTimeout(() => navigate('role-selection'), 3000);

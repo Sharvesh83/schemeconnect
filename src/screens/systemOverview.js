@@ -1,195 +1,105 @@
+import { t } from '../translations.js';
+
 export function renderSystemOverview() {
-    return `
+  return `
     <div class="screen">
-      <div class="top-bar admin">
-        <button class="top-bar-back" data-navigate="role-selection">←</button>
-        <span class="top-bar-title">System Overview</span>
-        <button class="top-bar-action">⚙️</button>
-      </div>
-
-      <!-- Admin Hero -->
-      <div style="background:linear-gradient(135deg, var(--admin) 0%, var(--admin-dark) 100%); padding:20px; color:white;">
-        <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
-          <div class="avatar avatar-lg" style="background:rgba(255,255,255,0.15); font-size:28px;">⚙️</div>
+      <div class="hero-section admin">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
           <div>
-            <p style="font-size:13px; opacity:0.8;">Admin Dashboard</p>
-            <h2 style="font-size:20px; font-weight:800;">Thoothukudi District</h2>
+            <p style="font-size:var(--fs-xs); opacity:0.8;">${t('systemOverview.adminDash')}</p>
+            <h1 class="hero-name">${t('systemOverview.district')}</h1>
           </div>
+          <div class="avatar avatar-lg" style="background:rgba(255,255,255,0.2); font-size:32px;">🏛️</div>
         </div>
-        <div style="display:flex; gap:8px;">
-          <div style="flex:1; background:rgba(255,255,255,0.12); border-radius:12px; padding:14px; text-align:center;">
-            <div style="font-size:26px; font-weight:800;">12,847</div>
-            <div style="font-size:11px; opacity:0.85;">Beneficiaries</div>
+      </div>
+
+      <!-- Stats -->
+      <div style="padding:16px 20px 8px;">
+        <div class="grid-3">
+          <div class="stat-card" style="text-align:center; border-left:3px solid var(--admin);">
+            <div class="stat-value" style="color:var(--admin);">12,847</div>
+            <div class="stat-label">${t('systemOverview.beneficiaries')}</div>
           </div>
-          <div style="flex:1; background:rgba(255,255,255,0.12); border-radius:12px; padding:14px; text-align:center;">
-            <div style="font-size:26px; font-weight:800;">8</div>
-            <div style="font-size:11px; opacity:0.85;">Active Schemes</div>
+          <div class="stat-card" style="text-align:center; border-left:3px solid var(--info);">
+            <div class="stat-value" style="color:var(--info);">8</div>
+            <div class="stat-label">${t('systemOverview.activeSchemes')}</div>
           </div>
-          <div style="flex:1; background:rgba(255,255,255,0.12); border-radius:12px; padding:14px; text-align:center;">
-            <div style="font-size:26px; font-weight:800;">156</div>
-            <div style="font-size:11px; opacity:0.85;">Pending</div>
+          <div class="stat-card" style="text-align:center; border-left:3px solid var(--warning);">
+            <div class="stat-value" style="color:var(--warning);">234</div>
+            <div class="stat-label">${t('systemOverview.pendingCount')}</div>
           </div>
         </div>
       </div>
 
-      <div class="content-padding content-gap" style="padding-top:16px;">
-        <!-- Quick Actions -->
-        <div class="grid-2" style="gap:12px;">
-          <div class="card" style="text-align:center; cursor:pointer; padding:16px;" data-navigate="scheme-management">
-            <div style="font-size:28px; margin-bottom:6px;">📝</div>
-            <p style="font-size:13px; font-weight:600;">Manage Schemes</p>
-            <p style="font-size:11px; color:var(--admin);">8 active</p>
+      <!-- Quick Actions -->
+      <div style="padding:8px 20px;">
+        <div class="grid-2" style="gap:10px;">
+          <div class="card" style="text-align:center; cursor:pointer; padding:14px;" data-navigate="scheme-management">
+            <div style="font-size:24px; margin-bottom:6px;">📋</div>
+            <p style="font-weight:600; font-size:var(--fs-sm);">${t('systemOverview.manageSchemes')}</p>
           </div>
-          <div class="card" style="text-align:center; cursor:pointer; padding:16px;">
-            <div style="font-size:28px; margin-bottom:6px;">👥</div>
-            <p style="font-size:13px; font-weight:600;">Officers</p>
-            <p style="font-size:11px; color:var(--text-hint);">24 active</p>
+          <div class="card" style="text-align:center; cursor:pointer; padding:14px;">
+            <div style="font-size:24px; margin-bottom:6px;">👥</div>
+            <p style="font-weight:600; font-size:var(--fs-sm);">${t('systemOverview.officers')}</p>
           </div>
-          <div class="card" style="text-align:center; cursor:pointer; padding:16px;">
-            <div style="font-size:28px; margin-bottom:6px;">📊</div>
-            <p style="font-size:13px; font-weight:600;">Reports</p>
-            <p style="font-size:11px; color:var(--text-hint);">Download</p>
+          <div class="card" style="text-align:center; cursor:pointer; padding:14px;">
+            <div style="font-size:24px; margin-bottom:6px;">📊</div>
+            <p style="font-weight:600; font-size:var(--fs-sm);">${t('systemOverview.reports')}</p>
           </div>
-          <div class="card" style="text-align:center; cursor:pointer; padding:16px;">
-            <div style="font-size:28px; margin-bottom:6px;">🔔</div>
-            <p style="font-size:13px; font-weight:600;">Alerts</p>
-            <p style="font-size:11px; color:var(--error); font-weight:600;">5 critical</p>
+          <div class="card" style="text-align:center; cursor:pointer; padding:14px;">
+            <div style="font-size:24px; margin-bottom:6px;">🔔</div>
+            <p style="font-weight:600; font-size:var(--fs-sm);">${t('systemOverview.alertsCard')}</p>
+            <p style="font-size:var(--fs-xs); color:var(--error);">${t('systemOverview.critical')}</p>
           </div>
         </div>
+      </div>
 
-        <!-- Disbursement Summary -->
+      <div class="content-padding content-gap">
+        <!-- Fund Disbursement -->
         <div class="card">
-          <h4 style="font-size:15px; font-weight:700; margin-bottom:14px;">💰 Fund Disbursement — FY 2025-26</h4>
-          <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
-            <div>
-              <p style="font-size:11px; color:var(--text-hint);">Total Allocated</p>
-              <p style="font-size:20px; font-weight:800; color:var(--admin);">₹48.5 Cr</p>
-            </div>
-            <div style="text-align:right;">
-              <p style="font-size:11px; color:var(--text-hint);">Disbursed</p>
-              <p style="font-size:20px; font-weight:800; color:var(--citizen);">₹32.1 Cr</p>
-            </div>
+          <h3 style="font-weight:700; margin-bottom:16px;">${t('systemOverview.fundDisburse')}</h3>
+          <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+            <span style="font-size:var(--fs-sm);">${t('systemOverview.totalAllocated')}: ₹48.5 Cr</span>
+            <span style="font-size:var(--fs-sm); font-weight:700; color:var(--admin);">66% ${t('systemOverview.utilized')}</span>
           </div>
-          <div class="progress-bar" style="height:10px;">
-            <div class="progress-bar-fill" style="width:66%; background:var(--admin);"></div>
-          </div>
+          <div class="progress-bar" style="height:12px;"><div class="progress-bar-fill" style="width:66%; background:var(--admin);"></div></div>
           <div style="display:flex; justify-content:space-between; margin-top:6px;">
-            <span style="font-size:12px; color:var(--citizen);">66% utilized</span>
-            <span style="font-size:12px; color:var(--text-hint);">₹16.4 Cr remaining</span>
+            <span style="font-size:var(--fs-xs); color:var(--text-secondary);">${t('systemOverview.disbursedLabel')}: ₹32.0 Cr</span>
+            <span style="font-size:var(--fs-xs); color:var(--text-hint);">${t('systemOverview.remaining')}: ₹16.5 Cr</span>
           </div>
         </div>
 
-        <!-- Scheme-wise Stats -->
+        <!-- Scheme Statistics -->
         <div class="card">
-          <h4 style="font-size:15px; font-weight:700; margin-bottom:14px;">📋 Scheme-wise Statistics</h4>
-          <div style="display:flex; flex-direction:column; gap:12px;">
-            <div style="display:flex; align-items:center; gap:12px; padding:10px; background:var(--bg); border-radius:10px;">
-              <div style="width:40px; height:40px; border-radius:10px; background:var(--citizen-surface); display:flex; align-items:center; justify-content:center; font-size:18px;">🌾</div>
-              <div style="flex:1;">
-                <h4 style="font-size:14px; font-weight:600;">PM-KISAN</h4>
-                <p style="font-size:11px; color:var(--text-hint);">2,450 beneficiaries</p>
-              </div>
-              <div style="text-align:right;">
-                <p style="font-size:14px; font-weight:700; color:var(--citizen);">₹14.7 Cr</p>
-                <p style="font-size:11px; color:var(--text-hint);">disbursed</p>
-              </div>
-            </div>
-
-            <div style="display:flex; align-items:center; gap:12px; padding:10px; background:var(--bg); border-radius:10px;">
-              <div style="width:40px; height:40px; border-radius:10px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; font-size:18px;">🏠</div>
-              <div style="flex:1;">
-                <h4 style="font-size:14px; font-weight:600;">PMAY Housing</h4>
-                <p style="font-size:11px; color:var(--text-hint);">890 beneficiaries</p>
-              </div>
-              <div style="text-align:right;">
-                <p style="font-size:14px; font-weight:700; color:var(--primary);">₹8.9 Cr</p>
-                <p style="font-size:11px; color:var(--text-hint);">disbursed</p>
-              </div>
-            </div>
-
-            <div style="display:flex; align-items:center; gap:12px; padding:10px; background:var(--bg); border-radius:10px;">
-              <div style="width:40px; height:40px; border-radius:10px; background:#fff3e0; display:flex; align-items:center; justify-content:center; font-size:18px;">👵</div>
-              <div style="flex:1;">
-                <h4 style="font-size:14px; font-weight:600;">Old Age Pension</h4>
-                <p style="font-size:11px; color:var(--text-hint);">1,230 beneficiaries</p>
-              </div>
-              <div style="text-align:right;">
-                <p style="font-size:14px; font-weight:700; color:var(--officer);">₹5.2 Cr</p>
-                <p style="font-size:11px; color:var(--text-hint);">disbursed</p>
-              </div>
-            </div>
-
-            <div style="display:flex; align-items:center; gap:12px; padding:10px; background:var(--bg); border-radius:10px;">
-              <div style="width:40px; height:40px; border-radius:10px; background:#fce4ec; display:flex; align-items:center; justify-content:center; font-size:18px;">👩</div>
-              <div style="flex:1;">
-                <h4 style="font-size:14px; font-weight:600;">Mahalir Thittam</h4>
-                <p style="font-size:11px; color:var(--text-hint);">567 beneficiaries</p>
-              </div>
-              <div style="text-align:right;">
-                <p style="font-size:14px; font-weight:700; color:#e91e63;">₹3.3 Cr</p>
-                <p style="font-size:11px; color:var(--text-hint);">disbursed</p>
-              </div>
-            </div>
+          <h3 style="font-weight:700; margin-bottom:12px;">${t('systemOverview.schemeStats')}</h3>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div><div style="display:flex; justify-content:space-between; margin-bottom:4px;"><span style="font-size:var(--fs-sm);">PM-KISAN</span><span style="font-size:var(--fs-sm); font-weight:700;">4,832</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:80%; background:var(--admin);"></div></div></div>
+            <div><div style="display:flex; justify-content:space-between; margin-bottom:4px;"><span style="font-size:var(--fs-sm);">PMAY Housing</span><span style="font-size:var(--fs-sm); font-weight:700;">1,247</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:45%; background:var(--admin);"></div></div></div>
+            <div><div style="display:flex; justify-content:space-between; margin-bottom:4px;"><span style="font-size:var(--fs-sm);">Old Age Pension</span><span style="font-size:var(--fs-sm); font-weight:700;">3,156</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:65%; background:var(--admin);"></div></div></div>
           </div>
         </div>
 
         <!-- Pending Approvals -->
         <div class="card">
-          <h4 style="font-size:15px; font-weight:700; margin-bottom:14px;">⏳ Pending Approvals by Stage</h4>
-          <div style="display:flex; flex-direction:column; gap:10px;">
-            <div style="display:flex; align-items:center; gap:8px;">
-              <span style="font-size:14px; width:120px;">VAO Level</span>
-              <div class="progress-bar" style="flex:1; height:8px;">
-                <div class="progress-bar-fill" style="width:35%; background:var(--citizen);"></div>
-              </div>
-              <span style="font-size:14px; font-weight:700; width:30px; text-align:right;">54</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:8px;">
-              <span style="font-size:14px; width:120px;">RI Level</span>
-              <div class="progress-bar" style="flex:1; height:8px;">
-                <div class="progress-bar-fill" style="width:26%; background:var(--officer);"></div>
-              </div>
-              <span style="font-size:14px; font-weight:700; width:30px; text-align:right;">41</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:8px;">
-              <span style="font-size:14px; width:120px;">Tahsildar</span>
-              <div class="progress-bar" style="flex:1; height:8px;">
-                <div class="progress-bar-fill" style="width:20%; background:var(--warning);"></div>
-              </div>
-              <span style="font-size:14px; font-weight:700; width:30px; text-align:right;">32</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:8px;">
-              <span style="font-size:14px; width:120px;">Collector</span>
-              <div class="progress-bar" style="flex:1; height:8px;">
-                <div class="progress-bar-fill" style="width:19%; background:var(--error);"></div>
-              </div>
-              <span style="font-size:14px; font-weight:700; width:30px; text-align:right;">29</span>
-            </div>
+          <h3 style="font-weight:700; margin-bottom:12px;">${t('systemOverview.pendingApprovals')}</h3>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; justify-content:space-between; font-size:var(--fs-sm);"><span>${t('systemOverview.vaoLevel')}</span><span class="badge badge-warning">84</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:var(--fs-sm);"><span>${t('systemOverview.riLevel')}</span><span class="badge badge-orange">67</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:var(--fs-sm);"><span>${t('systemOverview.tahsildar')}</span><span class="badge badge-info">52</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:var(--fs-sm);"><span>${t('systemOverview.collector')}</span><span class="badge badge-error">31</span></div>
           </div>
         </div>
 
         <!-- System Health -->
-        <div class="card" style="background:var(--admin-surface); border:1px solid #80cbc4; margin-bottom:24px;">
-          <h4 style="font-size:15px; font-weight:700; margin-bottom:10px;">🖥️ System Health</h4>
-          <div class="grid-2" style="gap:10px;">
-            <div style="display:flex; align-items:center; gap:6px;">
-              <span style="color:var(--citizen);">🟢</span>
-              <span style="font-size:13px;">API Gateway</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px;">
-              <span style="color:var(--citizen);">🟢</span>
-              <span style="font-size:13px;">Database</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px;">
-              <span style="color:var(--citizen);">🟢</span>
-              <span style="font-size:13px;">Aadhaar Auth</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px;">
-              <span style="color:var(--warning);">🟡</span>
-              <span style="font-size:13px;">SMS Gateway</span>
-            </div>
+        <div class="card" style="background:var(--admin-surface); border:1px solid var(--admin); margin-bottom:24px;">
+          <h3 style="font-weight:700; margin-bottom:8px;">${t('systemOverview.systemHealth')}</h3>
+          <div style="display:flex; gap:16px;">
+            <div style="text-align:center; flex:1;"><p style="font-size:var(--fs-2xl); font-weight:800; color:var(--citizen);">🟢</p><p style="font-size:var(--fs-xs);">API</p></div>
+            <div style="text-align:center; flex:1;"><p style="font-size:var(--fs-2xl); font-weight:800; color:var(--citizen);">🟢</p><p style="font-size:var(--fs-xs);">DB</p></div>
+            <div style="text-align:center; flex:1;"><p style="font-size:var(--fs-2xl); font-weight:800; color:var(--warning);">🟡</p><p style="font-size:var(--fs-xs);">Aadhaar</p></div>
+            <div style="text-align:center; flex:1;"><p style="font-size:var(--fs-2xl); font-weight:800; color:var(--citizen);">🟢</p><p style="font-size:var(--fs-xs);">Payment</p></div>
           </div>
-          <p style="font-size:11px; color:var(--text-hint); margin-top:10px;">Last sync: 2 mins ago • Uptime: 99.7%</p>
+          <p style="font-size:var(--fs-xs); color:var(--text-hint); text-align:center; margin-top:8px;">${t('systemOverview.lastSync')}</p>
         </div>
       </div>
     </div>

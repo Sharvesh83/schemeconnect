@@ -1,48 +1,53 @@
+import { t, currentLang } from '../translations.js';
+
 export function renderRoleSelection() {
-    return `
-    <div class="screen" style="background:var(--bg);">
-      <div style="background: linear-gradient(135deg, #0d47a1 0%, #1a237e 100%); padding: 40px 24px 32px; color:white; text-align:center;">
-        <div style="width:64px; height:64px; margin:0 auto 12px; border-radius:50%; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:28px;">🏛️</div>
-        <h1 style="font-size:22px; font-weight:800; margin-bottom:4px;">SchemeConnect</h1>
-        <p style="font-size:13px; opacity:0.8;">Select your role to continue</p>
+  return `
+    <div class="screen" style="background:var(--surface);">
+      <!-- Header -->
+      <div style="background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); padding:48px 24px 32px; text-align:center; color:white; border-radius:0 0 24px 24px;">
+        <div style="font-size:48px; margin-bottom:16px;">🏛️</div>
+        <h1 style="font-size:var(--fs-2xl); font-weight:800;">${t('role.title')}</h1>
+        <p style="font-size:var(--fs-sm); opacity:0.8; margin-top:8px;">${t('role.subtitle')}</p>
       </div>
 
-      <div class="content-padding content-gap" style="padding-top:24px;">
-        <div class="role-card" data-role="citizen" data-navigate="login" style="border-color: #c8e6c9;">
-          <div class="role-card-icon" style="background:var(--citizen-surface); color:var(--citizen);">👤</div>
+      <!-- Role Cards -->
+      <div style="padding:24px 20px; display:flex; flex-direction:column; gap:16px;">
+        <div class="role-card" data-role="citizen" data-navigate="login">
+          <div class="role-card-icon" style="background:var(--citizen-surface);">👤</div>
           <div class="role-card-body">
-            <h3>Citizen <span style="font-weight:400; font-size:13px; color:var(--text-hint);">/ குடிமகன்</span></h3>
-            <p>Find schemes, apply & track benefits</p>
+            <h3>${t('role.citizen')}</h3>
+            <p>${t('role.citizenDesc')}</p>
           </div>
           <span style="color:var(--text-hint); font-size:20px;">›</span>
         </div>
 
-        <div class="role-card" data-role="officer" data-navigate="login" style="border-color: #ffccbc;">
-          <div class="role-card-icon" style="background:var(--officer-surface); color:var(--officer);">🛡️</div>
+        <div class="role-card" data-role="officer" data-navigate="login">
+          <div class="role-card-icon" style="background:var(--officer-surface);">🛡️</div>
           <div class="role-card-body">
-            <h3>Revenue Officer <span style="font-weight:400; font-size:13px; color:var(--text-hint);">/ அதிகாரி</span></h3>
-            <p>Verify, inspect & approve applications</p>
+            <h3>${t('role.officer')}</h3>
+            <p>${t('role.officerDesc')}</p>
           </div>
           <span style="color:var(--text-hint); font-size:20px;">›</span>
         </div>
 
-        <div class="role-card" data-role="admin" data-navigate="login" style="border-color: #b2dfdb;">
-          <div class="role-card-icon" style="background:var(--admin-surface); color:var(--admin);">⚙️</div>
+        <div class="role-card" data-role="admin" data-navigate="login">
+          <div class="role-card-icon" style="background:var(--admin-surface);">⚙️</div>
           <div class="role-card-body">
-            <h3>Admin</h3>
-            <p>Manage schemes & monitor system</p>
+            <h3>${t('role.admin')}</h3>
+            <p>${t('role.adminDesc')}</p>
           </div>
           <span style="color:var(--text-hint); font-size:20px;">›</span>
         </div>
       </div>
 
-      <div style="padding:24px; text-align:center;">
+      <!-- Language Toggle -->
+      <div style="padding:24px 20px; text-align:center;">
         <div class="lang-toggle">
-          <button class="lang-btn active">English</button>
-          <button class="lang-btn">தமிழ்</button>
-          <button class="lang-btn">हिंदी</button>
+          <button class="lang-btn ${currentLang === 'en' ? 'active' : ''}" data-lang="en">${t('common.english')}</button>
+          <button class="lang-btn ${currentLang === 'ta' ? 'active' : ''}" data-lang="ta">${t('common.tamil')}</button>
+          <button class="lang-btn" data-lang="en">${t('common.hindi')}</button>
         </div>
-        <p style="font-size:11px; color:var(--text-hint); margin-top:16px;">Powered by Digital India 🇮🇳</p>
+        <p style="font-size:var(--fs-xs); color:var(--text-hint); margin-top:16px;">${t('common.poweredBy')}</p>
       </div>
     </div>
   `;
