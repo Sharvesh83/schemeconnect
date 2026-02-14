@@ -45,7 +45,7 @@ export function renderRoleSelection() {
         <div class="lang-toggle">
           <button class="lang-btn ${currentLang === 'en' ? 'active' : ''}" data-lang="en">${t('common.english')}</button>
           <button class="lang-btn ${currentLang === 'ta' ? 'active' : ''}" data-lang="ta">${t('common.tamil')}</button>
-          <button class="lang-btn" data-lang="en">${t('common.hindi')}</button>
+          <button class="lang-btn ${currentLang === 'hi' ? 'active' : ''}" data-lang="hi">${t('common.hindi')}</button>
         </div>
         <p style="font-size:var(--fs-xs); color:var(--text-hint); margin-top:16px;">${t('common.poweredBy')}</p>
       </div>

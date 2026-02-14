@@ -59,6 +59,7 @@ export function renderLogin() {
         <div class="lang-toggle">
           <button class="lang-btn ${currentLang === 'en' ? 'active' : ''}" data-lang="en">${t('common.english')}</button>
           <button class="lang-btn ${currentLang === 'ta' ? 'active' : ''}" data-lang="ta">${t('common.tamil')}</button>
+          <button class="lang-btn ${currentLang === 'hi' ? 'active' : ''}" data-lang="hi">${t('common.hindi')}</button>
         </div>
       </div>
     </div>
